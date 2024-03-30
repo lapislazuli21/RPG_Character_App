@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:crpg/models/skill.dart';
 import 'package:crpg/models/stats.dart';
 import 'package:crpg/models/vocation.dart';
@@ -30,6 +31,42 @@ class Character with Stats {
   void updateSkill(Skill skill) {
     skills.clear();
     skills.add(skill);
+  }
+
+  Map<String, dynamic> toFirestore() {
+    return {
+      "name": name,
+      "slogan": slogan,
+      "isFav": _isFav,
+      "vocation": vocation.toString(), // "vocation.ninja"
+      "skills": skills.map((s) => s.id).toList(),
+      "stats": statsAsMap,
+      "points": points,
+    };
+  }
+
+  factory Character.fromFirestore(
+    DocumentSnapshot<Map<String, dynamic>> snapshot,
+    SnapshotOptions? options
+  ) {
+      final data = snapshot.data()!;
+
+      Character character = Character(
+        name: data['name'], slogan: data['slogan'], vocation: Vocation.values.firstWhere((voc) => voc.toString() == data['vocation']), id: snapshot.id
+      );
+
+      for (String id in data['skills']) {
+        Skill skill = allSkills.firstWhere((element) => element.id == id);
+        character.updateSkill(skill);
+      }
+
+      if (data['isFav']) {
+        character.toggleIsFav();
+      }
+
+      character.setStats(points: data['points'], stats: data['stats']);
+
+      return character;
   }
 }
 

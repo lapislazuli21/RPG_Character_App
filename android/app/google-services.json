@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832623302445",
+    "project_id": "character-rpg",
+    "storage_bucket": "character-rpg.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832623302445:android:c7fc19403e1b539783e5a4",
+        "android_client_info": {
+          "package_name": "com.example.crpg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEtJC1d548tZu6WUKst1tHLcok8Ui8ra0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

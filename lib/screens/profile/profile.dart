@@ -1,10 +1,12 @@
 import 'package:crpg/screens/profile/skill_list.dart';
 import 'package:crpg/screens/profile/stats_table.dart';
+import 'package:crpg/services/character_store.dart';
 import 'package:crpg/shared/styled_button.dart';
 import 'package:crpg/shared/styled_text.dart';
 import 'package:crpg/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:crpg/models/character.dart';
+import 'package:provider/provider.dart';
 
 class Profile extends StatelessWidget {
   const Profile({required this.character, super.key});
@@ -82,6 +84,9 @@ class Profile extends StatelessWidget {
             ),
 
             StyledButton(onPressed: (){
+
+              Provider.of<CharacterStore>(context, listen: false).saveCharacter(character);
+
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: const StyledHeadline('Character Updated'),
                 showCloseIcon: true,
