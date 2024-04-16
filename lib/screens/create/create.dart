@@ -84,9 +84,9 @@ class _CreateState extends State<CreateScreen> {
       return;
     }
 
-  Provider.of<CharacterStore>(context, listen: false).addCharacter(
-    Character(name: _nameController.text.trim(), slogan: _sloganController.text.trim(), vocation: selectedVocation, id: uuid.v4())
-  );
+    Provider.of<CharacterStore>(context, listen: false).addCharacter(
+      Character(name: _nameController.text.trim(), slogan: _sloganController.text.trim(), vocation: selectedVocation, id: uuid.v4())
+    );
 
     Navigator.push(context, MaterialPageRoute(
       builder: (ctx) => const Home(),
